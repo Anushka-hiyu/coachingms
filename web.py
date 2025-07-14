@@ -3,17 +3,27 @@ from flask import make_response
 import csv
 import mysql.connector
 import datetime
+import os
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 app.secret_key = 'anushka'
 
+db_url = urlparse(os.environ.get("MYSQL_URL"))
+
+if db_url:
+    parsed_url = urlparse(db_url)
+
 #SQL wala part
-db = mysql.connector.connect(
-    host = 'localhost',
-    user = 'root',
-    password = 'jimin',
-    database = 'coachingms'
-)
+    db = mysql.connector.connect(
+        host = parsed_url.hostname,
+        port = parsed_url.port,
+        user = parsed_url.username,
+        password = parsed_url.password,
+        database = parsed_url.path[1:]
+    )
+else:
+    raise ValueError("MYSQL_URL environment variable not set")
 
 cursor = db.cursor()
 
