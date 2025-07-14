@@ -9,21 +9,21 @@ from urllib.parse import urlparse
 app = Flask(__name__)
 app.secret_key = 'anushka'
 
-db_url = urlparse(os.environ.get("MYSQL_URL"))
+db_url = os.environ.get("MYSQL_URL")
 
 if db_url:
     parsed_url = urlparse(db_url)
 
-#SQL wala part
+    #SQL wala part
     db = mysql.connector.connect(
         host = parsed_url.hostname,
-        port = parsed_url.port,
         user = parsed_url.username,
         password = parsed_url.password,
-        database = parsed_url.path[1:]
+        database = parsed_url.path[1:],
+        port = parsed_url.port or 3306
     )
 else:
-    raise ValueError("MYSQL_URL environment variable not set")
+    raise Exception("MYSQL_URL environment variable not set")
 
 cursor = db.cursor()
 
