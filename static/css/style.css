@@ -1,0 +1,349 @@
+/*body k liye*/
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+    color: #1c1f2b;
+    margin: 0;
+    padding: 0;
+}
+
+/* header part */
+header {
+    background: #1c1f2b;
+    color: #ffffff;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    border-bottom: 5px solid #3cb371;
+}
+
+.logo {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* navbar */
+.navbar {
+    display: flex;
+    gap: 12px;
+}
+
+.navbar a {
+    color: #f0f0f0;
+    text-decoration: none;
+    padding: 10px 18px;
+    background-color: #2d3244;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    background-color: #3cb371;
+    color: white;
+}
+
+/* main dabba */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    background-color: #eaeaea;
+    color: #555;
+    border-top: 2px solid #3cb371;
+}
+
+/* card class */
+.card {
+    background-color: #fafafa;
+    border-left: 5px solid #3cb371;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* login box */
+.login-box {
+    max-width: 400px;
+    margin: 3rem auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #1c1f2b;
+    margin-bottom: 1.5rem;
+}
+
+.login-box input {
+    width: 90%;
+    margin: 10px 0;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.login-box input:focus {
+    border-color: #3cb371;
+    outline: none;
+    box-shadow: 0 0 5px rgba(60,179,113,0.3);
+}
+
+/* buttons */
+button, .btn {
+    background: #3cb371;
+    color: white;
+    border: none;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(60,179,113,0.2);
+}
+
+button:hover, .btn:hover {
+    background-color: #2e8b57;
+    transform: translateY(-2px);
+}
+
+/* edit/delete buttons */
+a.edit-btn, a.delete-btn {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+}
+
+a.edit-btn {
+    background-color: #fff;
+    border: 1px solid blue;
+}
+
+a.edit-btn:hover {
+    background-color: #5379f6;
+}
+
+a.delete-btn {
+    background-color: #fff;
+    border: 1px solid red;
+}
+
+a.delete-btn:hover {
+    background-color: lightcoral;
+}
+
+/* table k liye */
+/*timetable ke liye*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+.timetable-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.day-block{
+    background: #fff;
+    border-left: 4px solid #6c5ce7;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.day-block h3{
+    margin-top: 0;
+    color: #6c5ce7;
+    font-size: 1.3rem;
+}
+
+.day-block ul{
+    list-style: none;
+    padding: 0;
+}
+
+.day-block li{
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #ccc;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+tr:hover {
+    background-color: #f0f0f0;
+}
+
+body.dark-mode .day-block{
+    background-color: #2d2d44;
+    color: white;
+    border-left: 4px solid #a29bfe;
+}
+
+
+/* js alert */
+.success-msg {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-left: 4px solid #28a745;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.error-msg {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-left: 4px solid #dc3545;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+/* dark mode */
+body.dark-mode {
+    background-color: #1c1f2b;
+    color: #e0e0e0;
+}
+
+body.dark-mode main {
+    background: #2c3040;
+}
+
+body.dark-mode header {
+    background-color: #11131a;
+}
+
+body.dark-mode .navbar a {
+    background-color: #33384e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .navbar a:hover {
+    background-color: #3cb371;
+}
+
+body.dark-mode .card,
+body.dark-mode .login-box {
+    background-color: #252835;
+    color: white;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background-color: #2e3244;
+    color: white;
+    border-color: #555;
+}
+
+body.dark-mode table {
+    border-color: #555;
+}
+
+body.dark-mode table tr:hover {
+    background-color: #3a3f55;
+}
+
+body.dark-mode .success-msg {
+    background-color: #215c3d;
+    color: #b6f3d5;
+}
+
+body.dark-mode .error-msg {
+    background-color: #6b2028;
+    color: #ffdada;
+}
+
+/* todhu sa animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+main, header, footer {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* carousel wala part */
+
+.quote-carousel-container{
+    margin-top: 2rem;
+    background-color: #f0f9f4;
+    border-left: 5px solid #2e7d32;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    height: 170px;
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+.quote-carousel{
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-slide{
+    display: none;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2ren;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+}
+
+.quote-slide.active{
+    display: block;
+    opacity: 1;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.quote-slide small{
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0; transform: translateY(10px);
+    }
+    100%{
+        opacity: 1; transform: translateY(0);
+    }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batches</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block title %}
+        Batches
+    {% endblock  %}
+
+    {% block content %}
+    <div class="card">
+    <h2>ALL BATCHES</h2>
+
+    <form method="POST" action="/add_batch">
+        <h3>Add Batch</h3>
+        <input type="text" name="name" placeholder="Batch Name" required><br>
+        <input type="text" name="subject" placeholder="Subject" required><br>
+    
+        <label>Assign Teacher: </label>
+        <select name="teacher_id">
+            <option value="">--Select Teacher--</option>
+            {% for t in teachers %}
+            <option value="{{ t[0] }}">{{ t[1] }}</option>                
+            {% endfor %}
+        </select><br>
+    
+        <input type="text" name="days" placeholder="Days (eg Mon/Wed/Sat)" required><br>
+        <input type="text" name="timing" placeholder="Timing (eg 4PM - 5PM)" required><br>
+        <input type="number" name="capacity" placeholder="Capacity" required><br><br>
+
+        <button type="submit" class="btn">Add Batch</button>
+    </form>
+    </div>
+
+.
+
+    <div class="card">
+    <table border="1" cellpadding="10" style="width: 100%; text-align: center;">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Teacher</th>
+            <th>Days</th>
+            <th>Timing</th>
+            <th>Capacity</th>
+            <th>Current Students</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        {% for b in batches %}
+        <tr>
+            <td>{{ b[1] }}</td>
+            <td>{{ b[2] }}</td>
+            <td>{{ b[3] or 'Unassigned' }}</td>
+            <td>{{ b[4] }}</td>
+            <td>{{ b[5] }}</td>
+            <td>{{ b[6] }}</td>
+            <td>{{ b[7] }}</td>
+            <td><a href="/edit_batch/{{ b[0] }}" class="btn edit-btn">Edit</a></td>
+            <td><a href="/delete_batch/{{ b[0] }}" onclick="confirmDelete('{{ b[1] }}')" class="btn delete-btn">Delete</a></td>
+        </tr>            
+        {% endfor %}
+        </tbody>
+    </table>
+    <br><a href="/dashboard" class="btn">Back to Dashboard</a>
+    </div>
+
+    {% endblock  %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block title %}
+        Edit Student
+    {% endblock  %}
+
+    {% block content %}
+     <div class="card">
+    <h2>Edit Student Details</h2>
+    <form method="POST">
+        <label>Name: </label><br>
+        <input type="text" name="name" value="{{ student[1] }}" required><br><br>
+       
+        <label>Email: </label><br>
+        <input type="email" name="email" value="{{ student[2] }}" required><br><br>
+
+        <label>Phone: </label><br>
+        <input type="text" name="phone" value="{{ student[3] }}" required><br><br>
+
+        <label>Date of Joining: : </label><br>
+        <input type="date" 
+        name="date_of_joining" 
+        value="{{ student[4].strftime('%Y-%m-%d') }}" 
+        required><br><br>
+
+        <label>Fee Status: </label><br>
+        <select name="fee_status">
+            <option value="Paid"
+            {% if student[5] =='Paid' %}selected                
+            {% endif %}>Paid</option>
+
+            <option value="Unpaid" {% if student[5] == 'Unpaid' %}selected              
+            {% endif %}>Unpaid</option>
+        </select><br><br>
+        
+        <button type="submit" class="btn">Update</button>
+    </form>
+
+    <br><a href="/students" class="btn">Back to Students</a>
+    </div>
+    {% endblock  %}
+</body>
+</html>

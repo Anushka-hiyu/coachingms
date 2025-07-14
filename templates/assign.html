@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Assignment</title>
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block title %}
+        Batch Assignment
+    {% endblock  %}
+
+    {% block content %}
+    <div class="card">
+    <h2>Assign Student and Teacher to Batch</h2>
+
+    {% if message %}
+    <p style="color:green;">{{ message }}</p>        
+    {% endif %}
+
+    <form method="POST">
+        <!--student dropdown-->
+<label>
+    Select Student:
+</label><br>
+
+{% if students %}    
+<select name="student_id" required>
+    {% for s in students %}
+    <option value="{{ s[0] }}">{{ s[1] }}</option>        
+    {% endfor %}
+</select>    
+{% else %}
+<p style="color:red;">No Unassigned students available.</p>    
+{% endif %}
+<br><br>
+
+<!--teachers dropdown-->
+<label>
+    Select Teacher:
+</label>
+<select name="teacher_id" required>
+    {% for t in teachers %}
+        <option value="{{ t[0] }}">{{ t[1] }}</option>
+    {% endfor %}
+</select><br><br>
+
+<!--batch dropdown-->
+<label>
+    Select Batch:
+</label>
+<select name="batch_id" required>
+    {% for b in batches %}
+        <option value="{{ b[0] }}">{{ b[1] }} 
+            (Capacity: {{ b[2] }}, Current: {{ b[3] }})
+        </option>
+    {% endfor %}
+</select><br><br>
+
+<button type="submit" class="btn">Assign</button>
+    </form>
+    <br>
+    <a href="/dashboard" class="btn">Back to Dashboard</a>
+    </div>
+    {% endblock  %}
+</body>
+</html>

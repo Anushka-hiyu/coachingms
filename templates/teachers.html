@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block title %}
+        Teachers      
+    {% endblock %}
+        
+    {% block content %}
+        <div class="card">
+    <h2>ALL TEACHERS</h2>
+    <form method="POST" action="/add_teacher">
+        <h3>Add Teacher</h3>
+        <input type="text" name="name" placeholder="Name" required><br>
+        <input type="text" name="subject" placeholder="Subject" required><br>
+        <input type="email" name="email" placeholder="Email"><br>
+        <input type="text" name="availability" placeholder="Availability (Optional)"><br><br>
+        <button type="submit" class="btn">Add Teacher</button>
+    </form>
+    </div>
+
+    <div class="card">
+    <table border="1" cellpadding="10" style="width: 100%;text-align: center;">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Email</th>
+            <th>Availability</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for t in teachers %}
+        <tr>
+            <td>{{ t[1] }}</td>
+            <td>{{ t[2] }}</td>
+            <td>{{ t[3] }}</td>
+            <td>{{ t[4] or 'N/A'}}</td>
+            <td><a href="/edit_teacher/{{ t[0] }}" class="btn edit-btn">Edit</a></td>
+            <td><a href="/delete_teacher/{{ t[0] }}" onclick="confirmDelete('{{ t[1] }}')" class="btn delete-btn">Delete</a></td>
+        </tr>            
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/dashboard" class="btn">Back to dashboard</a>
+    </div>
+        {% endblock  %}
+</body>
+</html>

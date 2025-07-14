@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    <!--idhr masterpage h-->>
+    {% extends 'base.html' %}
+
+    {% block title %}
+        Dashboard
+    {% endblock %}
+
+         {% block content %}
+    <div class="card">
+        <h2>Welcome back, {{ user }}!</h2>
+        <p>Total Students: {{ total_students }}</p>
+        <p>Total Teachers: {{ total_teachers }}</p>       
+        <p>Total Batches: {{ total_batches }}</p>
+        <p>Unpaid Students: {{ total_unpaid }}</p>
+    
+    </div>
+
+    <div class="quote-carousel-container">
+    <div class="quote-carousel">
+        <div class="quote-slide active">
+            <p>"Arise, awake and stop not till the goal is reached."</p>
+            <small>~Swami Vivekananda</small>
+        </div>
+
+        <div class="quote-slide">
+            <p>"Dream, dream, dream. Dreams transform into thoughts and thoughts result in action."</p>
+            <small>~Dr. A.P.J Abdul Kalam</small>
+        </div>
+
+        <div class="quote-slide">
+            <p>"A person should not be too honest. Straight trees are cut first."</p>
+            <small>~Chanakya</small>
+        </div>
+
+        <div class="quote-slide">
+            <p>"In a conflict between the heart and the brain, follow your heart."</p>
+            <small>~Swami Vivekananda</small>
+        </div>
+    </div>
+    </div>
+        {% endblock content %}
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Teacher</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block title %}
+        Edit Teacher
+    {% endblock  %}
+
+    {% block content %}
+    <div class="card">
+    <h2>Edit Teacher Info</h2>
+    <form method="POST">
+        <input type="text" name="name" value="{{ teacher[1] }}" placeholder="Name" required><br>
+        <input type="text" name="subject" value="{{ teacher[2] }}" placeholder="Subject" required><br>
+        <input type="email" name="email" value="{{ teacher[3] }}" placeholder="Email"><br>
+        <input type="text" name="availability" value="{{ teacher[4] or '' }}" placeholder="Availability"><br><br>
+
+        <button type="submit" class="btn">Update</button>
+    </form>
+
+    <br>
+    <a href="/teachers" class="btn">Back to Teachers</a>
+    </div>
+    {% endblock  %}
+</body>
+</html>

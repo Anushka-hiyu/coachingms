@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block title %}
+        Student Profile
+    {% endblock  %}
+
+    {% block content %}
+    <div class="card" style="max-width: 600px;margin: 2rem auto;">
+    
+        <h2 style="margin-bottom: 1.5rem;">Student Profile</h2>
+
+    <p><strong>Name: </strong>{{ student[1] }}</p>
+    <p><strong>Email: </strong>{{ student[2] }}</p>
+    <p><strong>Phone: </strong>{{ student[3] }}</p>
+    <p><strong>Date of Joining: </strong>{{ student[4] }}</p>
+    <p><strong>Fee Status: </strong>{{ student[5] }}</p>
+    <p><strong>Batch: </strong>{{ student[6] or 'Not Assigned' }}</p>
+
+    <br>
+    <a href="/students" class="btn">Back to Students</a>
+    </div>
+    {% endblock  %}
+</body>
+</html>

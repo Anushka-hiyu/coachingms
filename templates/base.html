@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        Coaching Management System
+    {% endblock %}</title>
+
+    <!--Idhr pe css and js-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    <header>
+        <div class="logo"><strong>Royal Tutorials</strong></div>
+
+        {% if not hide_navbar %}
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/timetable">Timetable</a>
+            <a href="/students">Students</a>
+            <a href="/teachers">Teachers</a>
+            <a href="/batches">Batches</a>
+            <a href="/assign">Assign</a>
+            <a href="/logout">Logout</a>
+            <button onclick="toggleTheme()" class="btn" style="margin-left: 20px;">Dark</button>
+        </nav>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block content %}            
+        {% endblock %}    
+    </main>
+
+    <footer>
+        <p>2025 Coaching Management System</p>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Batch</title>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block title %}
+        Edit Batch
+    {% endblock title %}
+    {% block content %}
+    <div class="card">
+    <h2>Edit Batch DetaiEdit Batchls</h2>
+    <form method="POST">
+        <input type="text" name="name" value="{{ batch[1] }}" placeholder="Batch Name" required><br>
+        <input type="text" name="subject" value="{{ batch[2] }}" placeholder="Subject" required><br>
+
+        <label>Assign Teacher: </label>
+        <select name="teacher_id">
+            <option value="">--Select Teacher--</option>
+            {% for t in teachers %}
+            <option value="{{ t[0] }}">
+                {% if batch[3]==t[0] %}selected                    
+                {% endif %}>
+                {{ t[1] }}
+            </option>                
+            {% endfor %}
+        </select><br>
+
+        <input type="text" name="days" value="{{ batch[4] }}" placeholder="Days (eg Mon/Wed/Fri)" required><br>
+        <input type="text" name="timing" value="{{ batch[5] }}" placeholder="Timing (eg 8AM - 10AM)" required><br>
+        <input type="number" name="capacity" value="{{ batch[6] }}" placeholder="Capacity" required><br><br>
+
+        <button type="submit" btn>Update</button>
+    </form>
+
+    <br>
+    <a href="/batches" class="btn">Back to Batches</a>
+    </div>        
+    {% endblock  %}
+</body>
+</html>

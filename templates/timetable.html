@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
+
+{% extends 'base.html' %}
+{% block title %}
+    Timetable
+{% endblock  %}
+
+{% block content %}
+<div class="card">
+    <h2 style="text-align: center;">Weekly Timetable</h2>
+
+    <div class="timetable-grid">
+        {% for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %}
+            <div class="day-block">
+                <h3>{{ day }}</h3>
+                <ul>
+                    {% for entry in schedule %}
+                        {% if day[:3] in entry[3] %}
+                            <li><strong>{{ entry[0] }}</strong> - {{ entry[1] }}<br>
+                            <small>{{ entry[4] }} | {{ entry[2] or 'No Teacher'}}</small></li>
+                        {% endif %}                            
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+</div>    
+{% endblock  %}
+</html>
