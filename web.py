@@ -566,6 +566,7 @@ def teacher_dashboard():
     return render_template('teacher_dashboard.html', timetable=timetable)
 
 #Teacher Registration
+#sql ka tha error dw
 @app.route('/teacher_register', methods=['GET', 'POST'])
 def teacher_register():
     if request.method == 'POST':
