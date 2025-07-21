@@ -665,11 +665,11 @@ def admin_messages(teacher_id):
         return redirect('/login')
 
     conn = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='jimin',
-        database='coachingms',
-        port = 3306
+        host = url.hostname,
+        user=url.username,
+        password=url.password,
+        database=url.path[1:],
+        port = url.port
     )
     cursor = conn.cursor(dictionary=True)
 
