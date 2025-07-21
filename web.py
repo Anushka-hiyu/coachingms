@@ -664,6 +664,8 @@ def admin_messages(teacher_id):
     if not session.get('user'):
         return redirect('/login')
 
+    url = urlparse(os.environ.get("MYSQL_URL"))
+    
     conn = mysql.connector.connect(
         host = url.hostname,
         user=url.username,
