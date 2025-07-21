@@ -1,0 +1,36 @@
+{% extends 'base_teacher.html' %}
+
+{% block title %}
+    Teacher's Dashboard | Royal Tutorials
+{% endblock %}
+
+{% block content %}
+<div class="teacher-dashboard-container">
+    <h2>Your Assigned Batches</h2>
+
+    {% if timetable %}
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Batch Name</th>
+                    <th>Subject</th>
+                    <th>Days</th>
+                    <th>Timing</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for batch in timetable %}
+                    <tr>
+                        <td>{{ batch[0] }}</td>
+                        <td>{{ batch[1] }}</td>
+                        <td>{{ batch[2] }}</td>
+                        <td>{{ batch[3] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-data">No batches assigned yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

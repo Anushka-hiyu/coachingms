@@ -1,0 +1,40 @@
+{% extends "base_teacher.html" %}
+
+{% block title %}Teacher Chat{% endblock %}
+
+{% block content %}
+<head>
+    <!--Idhr pe css and js-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+</head>
+  <div class="chat-wrapper">
+    <h2 class="chat-heading">Chat with Admin</h2>
+
+    <div class="chat-box" id="chat-box">
+      {% for message in messages %}
+        <div class="chat-message {% if message.is_teacher_sender %}right teacher{% else %}left admin{% endif %}">
+          <div class="bubble">
+            <strong>{% if message.is_teacher_sender %}You{% else %}Admin{% endif %}</strong><br>
+            {{ message.message }}
+            <div class="timestamp">{{ message.timestamp }}</div>
+          </div>
+        </div>
+      {% else %}
+        <p>No messages yet.</p>
+      {% endfor %}
+    </div>
+
+    {% if admin %}
+      <form action="{{ url_for('teacher_messages', admin_id=admin.id) }}" method="POST" id="message-form" class="message-form">
+        <input type="text" name="message" placeholder="Type your message..." required>
+        <button type="submit">Send</button>
+      </form>
+    {% else %}
+      <p>Error loading admin info.</p>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='chat.js') }}"></script>
+{% endblock %}

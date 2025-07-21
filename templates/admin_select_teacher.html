@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<head>
+    <!--Idhr pe css and js-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+</head>
+
+{% block title %}
+Select a Teacher to Chat
+{% endblock %}
+
+{% block content %}
+<head>
+    <!--Idhr pe css and js-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+</head>
+  <div class="chat-wrapper">
+    <h2 class="chat-heading">Select a Teacher to Chat</h2>
+    <ul class="teacher-list">
+      {% for teacher in teachers %}
+        <li class="teacher-item">
+          <a href="{{ url_for('admin_messages', teacher_id=teacher.id) }}">
+            👤 {{ teacher.name }}
+          </a>
+        </li>
+      {% else %}
+        <li class="no-teacher">No teachers available.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

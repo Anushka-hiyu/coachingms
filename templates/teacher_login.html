@@ -1,0 +1,112 @@
+{% extends 'base_teacher.html' %}
+{% set hide_navbar = True %}
+{% block title %}
+    Teacher Login
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <style>
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 80px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+
+        .login-card {
+            background-color: #fafafa;
+            border-left: 5px solid #3cb371;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        .login-card input[type="text"],
+        .login-card input[type="password"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .show-password {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            background-color: #3cb371;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #2e8b57;
+        }
+    </style>
+</head>
+<body>
+<!-- Dark Mode Toggle -->
+
+<div class="theme-toggle">
+<button class="toggle-btn" onclick="toggleMode()">Dark</button></div>
+
+<!-- Login Card -->
+<div class="card">
+
+        <h2>Welcome to the Page</h2>
+        <form method="POST">
+            <!-- Username -->
+            <div class="form-group">
+                
+                <input type="email" name="email" id="email" placeholder="Enter your email" required >
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+
+            <!-- Show Password -->
+             <div class="show-password">            
+                <label for="showPass">Show Password</label>
+                <input type="checkbox" onclick="togglePassword()" id="showPass">             
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+
+<script>
+    function togglePassword() {
+        const pwd = document.getElementById("password");
+        pwd.type = pwd.type === "password" ? "text" : "password";
+    }
+
+    function toggleMode() {
+        document.body.classList.toggle("dark-mode");
+    }
+</script>
+</body>
+{% endblock %}

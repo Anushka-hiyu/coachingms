@@ -1,0 +1,32 @@
+{% extends "base_teacher.html" %}
+{% block  title %}
+    Your Notifications
+{% endblock  %}
+{% block content %}
+<head>
+    <!--Idhr pe css and js-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+</head>
+<div class="notify-container">
+    <h2>Your Notifications</h2>
+    {% if not notifications %}
+        <p>No notifications yet.</p>
+    {% else %}
+        {% for n in notifications %}
+            <div class="notification {{ 'unread' if not n.seen else 'read' }}">
+                <div class="notification-header">
+                    <h4>{{ n.title or "No Title" }}</h4>
+                    <small>{{ n.created_at.strftime("%d %b %Y, %I:%M %p") }}</small>
+                </div>
+                <p>{{ n.message }}</p>
+                {% if not n.seen %}
+                    <form method="POST" action="/mark_as_seen">
+                        <input type="hidden" name="notification_id" value="{{ n.id }}">
+                        <button type="submit">Mark as Read</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

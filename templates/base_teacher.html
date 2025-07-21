@@ -15,17 +15,13 @@
 <body>
     <div class="layout-container">
         {% if not hide_navbar %}
-        <aside class="sidebar">
+        <aside class="sidebar" aria-label="Teacher Sidebar Navigation">
             <div class="logo"><strong>Royal Tutorials</strong></div>
-            <nav class="sidebar-nav">           
-                <a href="/dashboard">Dashboard</a>
-                <a href="/timetable">Timetable</a>
-                <a href="/students">Students</a>
-                <a href="/teachers">Teachers</a>
-                <a href="/batches">Batches</a>
-                <a href="/assign">Assign</a>
-                <a href="/admin/notify">Send Notification to Teachers</a>
-                <a href="/admin_select_teacher">Messages</a>
+            <nav class="sidebar-nav">                
+                <a href="/teacher_dashboard">Dashboard</a>
+                <a href="/notifications">Notifications</a>
+                <a href="{{ url_for('teacher_messages', admin_id=1) }}">Messages</a>
+                <span>{{ session['role'] }}</span>
                 <a href="/logout" onclick="confirmLogged()">Logout</a>
                 <button onclick="toggleTheme()" class="btn theme-toggle">Dark</button>
             </nav>
@@ -47,7 +43,7 @@
             </footer>
         </div>
     </div>
-{% block scripts %}    
+    {% block scripts %}    
 {% endblock  %}
 </body>
 </html>

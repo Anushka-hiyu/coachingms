@@ -1,83 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='rt.ico') }}">
-</head>
-<body>
-    {% extends 'base.html' %}
-    {% block title %}
-        Students
-    {% endblock %}
+{% extends 'base.html' %}
+{% block title %}
+Students
+{% endblock %}
 
-    {% block content %}
-    <div class="card">
-    <h2>ALL STUDENTS</h2>
+{% block content %}
+<style>
+    body.dark-mode h2, body.dark-mode h3{
+        color: white;
+    }
+</style>
+<!-- Add Student Form Card -->
+ <div class="container">
 
-    <form method="POST" action="/add_student">
-        <h3>Add Student</h3>
-        <input type="text" name="name" placeholder="Name" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="text" name="phone" placeholder="Phone" required><br>
-        <input type="date" name="date_of_joining" required><br>
-        <input type="text" name="batch_id" placeholder="Batch ID (Optional)" ><br>
-        <select name="fee_status">
-            <option value="Paid">Paid</option>
-            <option value="Unpaid">Unpaid</option>
-        </select><br><br>
-        <button type="submit">Add Student</button>
+<div class="card form-card">
+    <h2 class="title">ALL STUDENTS</h2>
+    <h3 class="subtitle">Add Student</h3>
+
+    <form method="POST" action="/add_student" class="form-grid">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Name" required pattern="[A-Za-z .'-]+" title="e.g. Shreyas Iyer">
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="phone" placeholder="Phone" required pattern="\d{10}" title="Enter a 10-digit mobile number">
+        </div>
+        <div class="form-group">
+            <input type="date" name="date_of_joining" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="batch_id" placeholder="Batch ID (Optional)">
+        </div>
+        <div class="form-group">
+            <select name="fee_status" required>
+                <option value="" disabled selected hidden>Select Fee Status</option>
+                <option value="Paid">Paid</option>
+                <option value="Unpaid">Unpaid</option>
+            </select>
+        </div>
+        <div class="form-group full-width">
+            <button type="submit" class="btn">Add Student</button>
+        </div>
     </form>
+</div>
+</div>
 
-    {% if not students %}
-    <p style="color:red;">No students found matching your criteria!</p>        
-    {% endif %}
-    </div>
-    
-    <div class="card">
-    <form action="/export_students" method="GET" style="display:inline;">
+<!-- Export & Back Buttons -->
+<div class="card">
+<form action="/export_students" method="GET" style="display:inline;">
         <button type="submit" class="btn">Export to CSV</button>
     </form>
 
     <a href="/dashboard" class="btn" style="margin-left: 20px;">Back to Dashboard</a>
-    </div>
-    
-    <div class="card">
-    <table border="1" cellpadding="10" style="width: 100%; text-align: center;">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>DOJ</th>
-            <th>Batch</th>
-            <th>Fee</th>
-            <th colspan="2">Action</th>
-        </tr>
-        </thead>
+</div>
 
+
+
+<!-- Students Table -->
+<div class="card table-card">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>DOJ</th>
+                <th>Batch</th>
+                <th>Fee</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
         <tbody>
-        {% for s in students %}
-        <tr>
-            <td><a href="/student/{{ s[ 0 ] }}">{{ s[1] }}</a></td>
-            <td>{{ s[2] }}</td>
-            <td>{{ s[3] }}</td>
-            <td>{{ s[4] }}</td>
-            <td>{{ s[6] or 'N/A' }}</td>
-            <td>{{ s[5] }} | <a href="/toggle_fee/{{ s[0] }}">Toggle</a></td>
-            <td><a href="/edit_student/{{ s[ 0 ] }}" class="btn edit-btn">Edit</a></td>
-            <td><a href="/delete_student/{{ s[ 0 ]}}" onclick="confirmDelete('{{ s[1] }}')" class="btn delete-btn">Delete</a></td>
-        </tr>            
-        {% endfor %}
+            {% for s in students %}
+            <tr>
+                <td><a href="/student/{{ s[0] }}">{{ s[1] }}</a></td>
+                <td>{{ s[2] }}</td>
+                <td>{{ s[3] }}</td>
+                <td>{{ s[4] }}</td>
+                <td>{{ s[6] or 'N/A' }}</td>
+                <td>{{ s[5] }} | <a href="/toggle_fee/{{ s[0] }}" class="btn-small">Toggle</a></td>
+                <td><a href="/edit_student/{{ s[0] }}" class="btn edit-btn">Edit</a></td>
+                <td><a href="/delete_student/{{ s[0] }}" onclick="return confirm('Delete {{ s[1] }}?')" class="btn delete-btn">Delete</a></td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
     </div>
-    {% endblock content %}
-    <br>
-    <a href="/dashboard">Back to Dashboard</a>
-    <script>
 
-    </script>
-</body>
-</html>
+{% endblock %}
